@@ -2,9 +2,9 @@ import Link from "next/link"
 
 import { siteConfig } from "@/config/site"
 import { buttonVariants } from "@/components/ui/button"
-import { Icons } from "@/components/icons"
-import { MainNav } from "@/components/main-nav"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { Icons } from "@/components/utility/icons"
+import { MainNav } from "@/components/layout/main-nav"
+import { ThemeToggle } from "@/components/common/theme-toggle"
 
 export function SiteHeader() {
   return (
@@ -29,7 +29,7 @@ export function SiteHeader() {
               </div>
             </Link>
             <Link
-              href={siteConfig.links.twitter}
+              href={siteConfig.links.linkedin}
               target="_blank"
               rel="noreferrer"
             >
@@ -39,8 +39,8 @@ export function SiteHeader() {
                   variant: "ghost",
                 })}
               >
-                <Icons.twitter className="h-5 w-5 fill-current" />
-                <span className="sr-only">Twitter</span>
+                <Icons.linkedin className="h-5 w-5 fill-current" />
+                <span className="sr-only">LinkedIn</span>
               </div>
             </Link>
             <ThemeToggle />
