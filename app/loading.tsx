@@ -4,7 +4,6 @@ import Link from "next/link"
 import { Skeleton } from "@/components/ui/skeleton"
 import Contact from "@/components/layout/contact"
 import Landing from "@/components/layout/landing"
-import { Icons } from "@/components/utility/icons"
 
 export default function Loading() {
   return (
