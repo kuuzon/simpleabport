@@ -23,7 +23,7 @@ const getRepos = async (): Promise<Repo[]> => {
     throw new Error("Failed to Fetch: Check Endpoint Return")
   }
   // Loading timeout
-  await new Promise((resolve) => setTimeout(resolve, 2000))
+  await new Promise((resolve) => setTimeout(resolve, 500))
   const data = await res.json()
   return data
 }
