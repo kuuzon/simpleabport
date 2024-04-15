@@ -7,7 +7,9 @@ type Repo = {
   html_url: string
   stargazers_count: number
   forks_count: number
-  watchers_count: number
+  watchers_count: number,
+  created_at: string,
+  updated_at: string
 }
 
 const getRepos = async (): Promise<Repo[]> => {
@@ -16,20 +18,24 @@ const getRepos = async (): Promise<Repo[]> => {
     "Content-Type": "application/json",
     Accept: "application/json",
   }
-  const res = await fetch("https://api.github.com/users/kuuzon/repos", {
+  const res = await fetch("https://api.github.com/users/kuuzon/repos?sort=updated", {
     headers,
+    // cache: "force-cache",
+    next: { revalidate: 10 },
   })
   if (!res.ok) {
     throw new Error("Failed to Fetch: Check Endpoint Return")
   }
   // Loading timeout
   await new Promise((resolve) => setTimeout(resolve, 500))
-  const data = await res.json()
-  return data
+  const data = await res.json();
+  let shortData = await data.slice(0,9)
+  return shortData;
 }
 
 export default async function ProjectsList() {
-  const repos = await getRepos()
+  const repos = await getRepos();
+  
   return (
     <section
       id="projects"
@@ -50,6 +56,8 @@ export default async function ProjectsList() {
             starCount={repo.stargazers_count}
             forkCount={repo.forks_count}
             watcherCount={repo.watchers_count}
+            createdAt={repo.created_at.substring(0, 10)}
+            updatedAt={repo.updated_at.substring(0, 10)}
           />
         ))}
       </div>

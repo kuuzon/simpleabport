@@ -9,6 +9,8 @@ export default function ProjectItem({
   starCount,
   forkCount,
   watcherCount,
+  createdAt,
+  updatedAt,
 }: {
   name: string
   description: string
@@ -16,18 +18,21 @@ export default function ProjectItem({
   starCount: number
   forkCount: number
   watcherCount: number
+  createdAt: string
+  updatedAt: string
 }) {
   return (
     <Link
       href={htmlUrl}
       target="_blank"
-      className="delay-50 relative overflow-hidden rounded-lg border bg-background p-2 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 hover:border-slate-400 hover:shadow-md"
+      className="delay-50 hover:scale-102 relative overflow-hidden rounded-lg border bg-background p-2 transition duration-300 ease-in-out hover:-translate-y-1 hover:border-slate-400 hover:shadow-md"
     >
-      <div className="flex min-h-[180px] flex-col justify-between rounded-md p-6">
+      <div className="flex min-h-[220px] flex-col justify-between rounded-md p-6">
         <div className="space-y-2">
           <h3 className="font-bold">{name}</h3>
           <p className="text-sm">{description}</p>
         </div>
+        <p className="text-xs">Last Updated on {createdAt}</p>
         <div className="flex flex-row justify-between">
           <span className="flex items-center text-muted-foreground">
             <Icons.star className="mr-2 h-3 w-3" />
