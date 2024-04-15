@@ -20,8 +20,8 @@ const getRepos = async (): Promise<Repo[]> => {
   }
   const res = await fetch("https://api.github.com/users/kuuzon/repos?sort=updated", {
     headers,
-    // cache: "force-cache",
-    next: { revalidate: 10 },
+    cache: "force-cache",
+    // next: { revalidate: 10 },
   })
   if (!res.ok) {
     throw new Error("Failed to Fetch: Check Endpoint Return")
